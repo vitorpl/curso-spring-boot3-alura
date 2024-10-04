@@ -23,8 +23,6 @@ import med.voll.api.dto.medico.DadosAtualizacaoMedico;
 import med.voll.api.dto.medico.DadosCadastroMedico;
 import med.voll.api.dto.medico.DadosDetalhamentoMedico;
 import med.voll.api.dto.medico.DadosListagemMedico;
-import med.voll.api.dto.paciente.DadosDetalhamentoPaciente;
-import med.voll.api.dto.paciente.DadosListagemPaciente;
 import med.voll.api.model.Medico;
 import med.voll.api.repository.MedicoRepository;
 
@@ -80,5 +78,12 @@ public class MedicoController {
 		medico.excluir();
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<DadosDetalhamentoMedico> obterPorId(@PathVariable Long id) {
+		var medico = repository.getReferenceById(id);
+		return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
 	}
 }
