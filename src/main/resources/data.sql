@@ -1,5 +1,6 @@
 
 INSERT INTO USUARIOS(login, senha) values ('vitor', '$2a$10$zZ2.nr/0VfXiHR9FzIe8NOC0XV.4FumXUYfh654XYyFogIU8pko5y');
+INSERT INTO USUARIOS(login, senha) values ('jao', '$2a$10$a7hDVCK7IXO4dNp.l7RbkeHwiT7eNBgxaUmglOqqTSYklqUeEWsjK');
 
 INSERT INTO MEDICOS (nome, email, telefone, crm, especialidade, logradouro, bairro, cep, cidade, uf, numero, complemento) 
 VALUES ('Adilson Zelio', 'adilson@voll.med', '(41)996477927', '999999', 'ORTOPEDIA', 'rua 1', 'bairro', '12345678', 'Brasilia', 'DF', '1', 'complemento');

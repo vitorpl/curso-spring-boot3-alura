@@ -26,7 +26,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		System.out.println("Passou pelo filtro do Spring..");
+		//System.out.println("Passou pelo filtro do Spring..");
 		
 		var tokenJwt = recuperarToken(request);
 		

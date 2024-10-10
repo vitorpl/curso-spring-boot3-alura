@@ -31,11 +31,14 @@ public class AutenticacaoController {
 
 	@PostMapping
 	public ResponseEntity<?> autenticar(@RequestBody @Valid DadosAutenticacao dados) {
+		System.out.println(gerarHash(dados.senha()));
+		
 		var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
+		
 		var autentication = manager.authenticate(authenticationToken);
 
 //		System.out.println("senha hash : " + dados.senha());
-//		System.out.println(gerarHash(dados.senha()));
+		
 
 		String tokenJwt = tokenService.gerarToken((Usuario) autentication.getPrincipal());
 		return ResponseEntity.ok(new DadosTokenJwt(tokenJwt));

@@ -16,8 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
+// @Configuration
+// @EnableWebSecurity
 public class SecurityConfig {
 
 	/* versões anteriores ao spring 3.1
@@ -55,8 +55,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                 		.requestMatchers(HttpMethod.POST, "/login").permitAll() // Libera o acesso ao endpoint de login
-                		//.requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN")
-                        //.requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
+                		.requestMatchers("/h2-console/**").permitAll() // Libera o acesso ao h2-console
+                		.requestMatchers("/swagger-ui.html").permitAll() // Libera o acesso ao SpringDoc
                         .anyRequest().authenticated() // Bloqueia os demais endpoints
                     )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //indica que deve chamar meu filter securityFilter antes do filter padrão do spring security (UsernamePasswordAuthenticationFilter)
@@ -65,7 +65,10 @@ public class SecurityConfig {
 	
 	@Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/login"));
+        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/login"))
+        		;
+//        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/login"))
+//                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/v3/api-docs.yaml", "/swagger-ui.html", "/webjars/**");
     }
 	
 	@Bean

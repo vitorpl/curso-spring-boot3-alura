@@ -3,6 +3,7 @@ package med.voll.api.model;
 
 import org.springframework.util.StringUtils;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -35,6 +36,8 @@ public class Medico {
 	private String email;
 	private String telefone;
 	private String crm;
+	
+	@Column(columnDefinition = "TINYINT(1)")
 	private Boolean ativo;
 	
 	@Enumerated(EnumType.STRING)
@@ -76,4 +79,6 @@ public class Medico {
 	public void excluir() {
 		this.ativo = false;
 	}
+	
+	
 }
